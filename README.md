@@ -1,6 +1,5 @@
-# generator-react-webpack-node
-
-[![npm version](https://badge.fury.io/js/generator-react-webpack-node.svg)](http://badge.fury.io/js/generator-react-webpack-node)
+# generator-react-webpack-node [![npm version](https://badge.fury.io/js/generator-react-webpack-node.svg)](http://badge.fury.io/js/generator-react-webpack-node)
+Yeoman generator for [react-webpack-node](https://github.com/choonkending/react-webpack-node).
 
 ## Getting Started
 
@@ -19,3 +18,6 @@ Finally, initiate the generator:
 ```bash
 yo react-webpack-node
 ```
+
+## License
+MIT © [Iegor Azuaga](http://iegor.me)
