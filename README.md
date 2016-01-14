@@ -19,5 +19,38 @@ Finally, initiate the generator:
 yo react-webpack-node
 ```
 
+## Generators
+Available generators:
+- [react-webpack-node:component](#component)
+- [react-webpack-node:container](#container)
+- [react-webpack-node:reducer](#reducer)
+- [react-webpack-node:constant](#constant)
+
+### Component
+Generates a component in app/components with a stylesheet.
+
+Example:
+``yo react-webpack-node:component myComponent``
+
+### Container
+Generates a container in app/containers.
+
+Example:
+``yo react-webpack-node:container myContainer``
+
+### Reducer
+Generates a reducer in app/reducers.
+
+Example:
+``yo react-webpack-node:reducer myReducer``
+
+*Remember that you will need to combine this new one with the others already created in the index.js*
+
+### Constant
+Creates a constant in the specified constants file located in app/constants.
+
+Example:
+``yo react-webpack-node:constant myConstantsFile MY_NEW_CONST``
+
 ## License
 MIT © [Iegor Azuaga](http://iegor.me)
