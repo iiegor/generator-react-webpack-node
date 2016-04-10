@@ -1,31 +1,30 @@
-import { createStore, compose, applyMiddleware } from 'redux';
-import rootReducer from 'reducers';
+import { createStore, applyMiddleware } from 'redux';
+import { routerMiddleware } from 'react-router-redux';
 import thunk from 'redux-thunk';
+import rootReducer from 'reducers';
+import promiseMiddleware from 'api/promiseMiddleware';
 import createLogger from 'redux-logger';
-import { devTools } from 'redux-devtools';
 
-const canUseDOM = !!(
-  (typeof window !== 'undefined' &&
-  window.document && window.document.createElement)
-);
+/*
+ * @param {Object} initial state to bootstrap our stores with for server-side rendering
+ * @param {History Object} a history object. We use `createMemoryHistory` for server-side rendering,
+ *                          while using browserHistory for client-side
+ *                          rendering.
+ */
+export default function configureStore(initialState, history) {
+  const middleware = [thunk, promiseMiddleware];
+  // Installs hooks that always keep react-router and redux
+  // store in sync
+  const reactRouterReduxMiddleware = routerMiddleware(history);
+  if (__DEVCLIENT__) {
+    middleware.push(reactRouterReduxMiddleware, createLogger());
+  } else {
+    middleware.push(reactRouterReduxMiddleware);
+  }
 
-let createStoreWithMiddleware;
-if (canUseDOM) {
-  createStoreWithMiddleware = compose(
-    applyMiddleware(thunk),
-    applyMiddleware(createLogger()),
-    devTools()
-  )(createStore);
-} else {
-  createStoreWithMiddleware = compose(
-    applyMiddleware(thunk),
-    applyMiddleware(createLogger()),
-    devTools()
-  )(createStore);
-}
+  const finalCreateStore = applyMiddleware(...middleware)(createStore);
 
-export default function configureStore(initialState) {
-  const store = createStoreWithMiddleware(rootReducer, initialState);
+  const store = finalCreateStore(rootReducer, initialState);
 
   if (module.hot) {
     // Enable Webpack hot module replacement for reducers

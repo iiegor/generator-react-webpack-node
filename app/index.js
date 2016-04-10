@@ -47,19 +47,19 @@ module.exports = yeoman.generators.Base.extend({
 
   writing: {
     config: function () {
-      this.template('.babelrc', '.babelrc', this.context);
-      this.template('karma.conf.js', 'karma.conf.js', this.context);
+      this.template('.eslintignore', '.eslintignore', this.context);
       this.template('.eslintrc', '.eslintrc', this.context);
+      this.template('karma.conf.js', 'karma.conf.js', this.context);
       // .gitignore is renamed by npm to .npmignore, so use underscore
       this.template('_gitignore', '.gitignore', this.context);
       this.template('package.json', 'package.json', this.context);
+      this.template('nodemon.json', 'nodemon.json', this.context);
     },
 
     projectfiles: function () {
       this.template('tests.webpack.js', 'tests.webpack.js', this.context);
       this.template('app.json', 'app.json', this.context);
       this.template('app', 'app', this.context);
-      this.template('app/components/.gitkeep', 'app/components/.gitkeep', this.context);
       this.template('server', 'server', this.context);
       this.template('server/models/.gitkeep', 'server/models/.gitkeep', this.context);
       this.template('server/controllers/.gitkeep', 'server/controllers/.gitkeep', this.context);

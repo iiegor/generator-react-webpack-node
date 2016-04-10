@@ -2,9 +2,7 @@ var express = require('express');
 var fs = require('fs');
 var secrets = require('./config/secrets');
 var webpack = require('webpack');
-var config = require('../webpack/webpack.config.dev.js');
 var app = express();
-var compiler = webpack(config);
 
 // Bootstrap models
 fs.readdirSync(__dirname + '/models').forEach(function(file) {
@@ -14,6 +12,9 @@ fs.readdirSync(__dirname + '/models').forEach(function(file) {
 var isDev = process.env.NODE_ENV === 'development';
 
 if (isDev) {
+  var config = require('../webpack/webpack.config.dev-client.js');
+  var compiler = webpack(config);
+  
   app.use(require('webpack-dev-middleware')(compiler, {
     noInfo: true,
     publicPath: config.output.publicPath

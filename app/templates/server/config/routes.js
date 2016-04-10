@@ -3,7 +3,9 @@
  */
 var express = require('express');
 var _ = require('lodash');
-var App = require('../../public/assets/app.server');
+var path = require('path');
+
+var App = require(path.resolve(__dirname, '../../', 'public', 'assets', 'server.js'))['default'];
 
 module.exports = function(app) {
   // app.put('/myRoute', myController.handlerMethod);
@@ -16,4 +18,4 @@ module.exports = function(app) {
     App(req, res);
   });
 
-};;
+};

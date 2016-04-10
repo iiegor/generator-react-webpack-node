@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { Link } from 'react-router';
 import { connect } from 'react-redux';
-import styles from 'scss/components/_navigation';
+import styles from 'css/components/navigation';
 
 class Navigation extends Component {
 

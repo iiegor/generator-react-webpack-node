@@ -1,0 +1,12 @@
+@value montserrat from './common/typography.css';
+
+/*
+ * Add any global styles here
+ */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}
